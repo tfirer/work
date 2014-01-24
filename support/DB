@@ -1,0 +1,65 @@
+DROP DATABASE IF EXISTS `digicare_support`;
+CREATE DATABASE `digicare_support` character set utf8;
+USE `digicare_support`;
+
+set names utf8;
+
+
+-- ---------------------
+-- t_subscribes
+-- ---------------------
+DROP TABLE IF EXISTS t_subscribes ;
+
+CREATE TABLE t_subscribes (
+  id SERIAL NOT NULL ,
+  mail VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (id) ,
+  INDEX (mail)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+
+
+-- ----------------------------------------------
+-- t_subscribes
+-- ERI different ID selecter for indiegogo user
+-- ----------------------------------------------
+DROP TABLE IF EXISTS t_community_eri_compare ;
+
+CREATE TABLE t_community_eri_compare (
+  id SERIAL NOT NULL ,
+  token VARCHAR(32) NOT null ,   -- prevent submit same post many times
+  mail VARCHAR(45) NOT NULL ,
+  selection VARCHAR(5) NOT NULL ,    -- old/new
+  advice TEXT NOT NULL ,
+  ip VARCHAR(15) NOT NULL ,
+  time INT NOT NULL ,
+  PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+
+
+-- --------------------------------------------
+-- t_indiegogo_buyer
+-- --------------------------------------------
+DROP TABLE IF EXISTS `t_indiegogo_buyer`;
+
+CREATE TABLE `t_indiegogo_buyer` (
+  `pledge_id` int(11) NOT NULL,
+  `fulflled` varchar(45) DEFAULT NULL,
+  `created` varchar(45) DEFAULT NULL,
+  `name` varchar(155) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `amount` varchar(45) DEFAULT NULL,
+  `perk` varchar(45) DEFAULT NULL,
+  `shipping_name` varchar(45) DEFAULT NULL,
+  `shipping_address` varchar(255) DEFAULT NULL,
+  `shipping_address2` varchar(255) DEFAULT NULL,
+  `shipping_city` varchar(45) DEFAULT NULL,
+  `shipping_state_or_province` varchar(45) DEFAULT NULL,
+  `shipping_zip_or_postal_code` varchar(45) DEFAULT NULL,
+  `shipping_country` varchar(45) DEFAULT NULL,
+  `color_p1` varchar(20) DEFAULT NULL,
+  `engraving_p1` varchar(20) DEFAULT NULL,
+  `color_p2` varchar(20) DEFAULT NULL,
+  `engraving_p2` varchar(20) DEFAULT NULL,
+  `color_p3` varchar(20) DEFAULT NULL,
+  `engraving_p3` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
